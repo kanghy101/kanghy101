@@ -1,16 +1,16 @@
 # 안녕하세요
-### 🛡️ Attack Flow (Mermaid.js)
-
-### 🛡️ Attack Flow (Mermaid.js - clean version)
+### 🎯 Simulated APT Attack Flow (Mermaid.js - realistic style)
 
 ```mermaid
 flowchart TD
-    A[Initial Access: WebLogic RCE Exploit] --> B[Execution: .class payload and obfuscated PowerShell]
-    B --> C[Payload Deployment: frpc.zip, la.zip, ct.zip, nmap.zip, index.asp]
-    C --> D[Tool Activation: fs.exe, rev.ps1, unzip.exe]
-    D --> E[Privilege Escalation: FileZilla login from 130 to 143]
-    E --> F[Credential Dumping: mimi.zip to 150_infos to infos.zip]
-    F --> G[Data Exfiltration: FTP transfer of infos.zip from 143]
-    G --> H[Crypto Mining: xmrig launched from xm.zip]
-    H --> I[Termination: xmrig process stopped on Oct 27, 2023]
+    A[Recon Stage: External scan identifies vulnerable WebLogic] --> B[Initial Access: RCE exploited via crafted .class payload]
+    B --> C[Persistence Setup: index.asp webshell dropped + unzip.exe deployed]
+    C --> D[Lateral Tooling: Tools staged (frpc.zip, la.zip, ct.zip, nmap.zip)]
+    D --> E[Command & Control: fs.exe + rev.ps1 retrieved from GitHub repo]
+    E --> F[Internal Pivot: FileZilla used for lateral move (130 -> 143)]
+    F --> G[Privilege Escalation: Mimikatz-style dump via mimi.zip → infos.zip]
+    G --> H[Exfiltration: FTP channel used to export credential dump]
+    H --> I[Post-Exploitation: xm.zip unpacked → xmrig miner launched]
+    I --> J[Cleanup/Exit: xmrig activity ends Oct 27, traces remain minimal]
+
 
